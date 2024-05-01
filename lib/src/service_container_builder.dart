@@ -17,16 +17,6 @@ class ServiceContainerBuilder extends ServiceContainer {
     _services = {};
     _sealed = true;
     _parent = parent;
-
-    /// Copying only scoped services to reduce a memory footprint
-    /// of large containers
-    parent._services.forEach((key, descriptor) {
-      if (descriptor is! Scoped) return;
-
-      final scoped = descriptor as Scoped;
-      final scopedDescriptor = scoped.scopeify();
-      if (scopedDescriptor != null) _services[key] = scopedDescriptor;
-    });
   }
 
   ServiceContainerBuilder() {

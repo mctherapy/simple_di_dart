@@ -1,12 +1,12 @@
-import 'package:simple_di/src/disposable.dart';
+import 'package:simple_di/src/abstraction/disposable.dart';
 import 'package:simple_di/src/errors/container_sealed.dart';
 import 'package:simple_di/src/errors/service_not_registered.dart';
-import 'package:simple_di/src/scoped_provider.dart';
-import 'package:simple_di/src/service_descriptor.dart';
+import 'package:simple_di/src/service_descriptors/scoped_provider.dart';
+import 'package:simple_di/src/abstraction/service_descriptor.dart';
 import 'package:simple_di/src/service_lifetime.dart';
-import 'package:simple_di/src/transient_provider.dart';
+import 'package:simple_di/src/service_descriptors/transient_provider.dart';
 
-import 'service_container.dart';
+import 'abstraction/service_container.dart';
 
 class ServiceContainerBuilder extends ServiceContainer {
   late final Map<int, ServiceDescriptor> _services;

@@ -1,8 +1,8 @@
-import 'package:simple_di/src/disposable.dart';
-import 'package:simple_di/src/service_descriptor.dart';
+import 'package:simple_di/src/abstraction/disposable.dart';
+import 'package:simple_di/src/abstraction/service_descriptor.dart';
 import 'package:simple_di/src/service_lifetime.dart';
 
-import 'service_container.dart';
+import '../abstraction/service_container.dart';
 
 class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
   Factory<T>? _factory;

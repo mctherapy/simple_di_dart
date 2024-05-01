@@ -1,4 +1,4 @@
-import 'package:simple_di/src/disposable.dart';
+import 'package:simple_di/src/abstraction/disposable.dart';
 
 abstract class ServiceContainer implements Disposable {
   /// Provides a registered service of type [T]

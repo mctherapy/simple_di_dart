@@ -1,4 +1,5 @@
 import 'package:simple_di/src/disposable.dart';
+import 'package:simple_di/src/errors/container_sealed.dart';
 import 'package:simple_di/src/errors/service_not_registered.dart';
 import 'package:simple_di/src/scoped_provider.dart';
 import 'package:simple_di/src/service_descriptor.dart';
@@ -29,7 +30,7 @@ class ServiceContainerBuilder extends ServiceContainer {
   /// Throws if container was sealed beforehand
   ServiceContainerBuilder add<T>(T Function(ServiceContainer) builder,
       {ServiceLifetime lifetime = ServiceLifetime.singleton}) {
-    if (_sealed) throw Exception("Cannot register service in sealed container");
+    if (_sealed) throw ContainerSealed();
 
     final descriptor = switch (lifetime) {
       ServiceLifetime.singleton => ScopedProvider(builder, true),

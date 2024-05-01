@@ -81,7 +81,7 @@ While it is not required, it is adviced to seal container when all services are 
 ```dart
 final serviceProvider = container.seal() // Also casts to ServiceContainer;
 ```
-**❗Performing registrations on sealed container results in thrown Exception.❗**
+**❗Performing registrations on sealed container results in thrown ContainerSealed exception.❗**
 ## Scoping
 Scope is an Unit of Work object that holds a copy of scoped service factories.
 

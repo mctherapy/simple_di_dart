@@ -36,13 +36,6 @@ class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
   bool get constructed => _instance != null;
 
   @override
-  void dispose() {
-    if (_instance is Disposable) {
-      (_instance as Disposable).dispose();
-    }
-  }
-
-  @override
   TRequested? unsafeProvideWith<TRequested>(ServiceContainer sp) {
     return provideWith(sp) as TRequested?;
   }

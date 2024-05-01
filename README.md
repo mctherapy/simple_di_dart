@@ -100,10 +100,10 @@ final container = new ServiceContainerBuilder()
     .seal();
 final scopedContainer = container.createScope();
 
-debugPring(container.provide<String>());        // Counter value is: 0
-debugPring(container.provide<String>());        // Counter value is: 1
-debugPring(scopedContainer.provide<String>());  // Counter value is: 0
-debugPring(container.provide<String>());        // Counter value is: 2
+debugPrint(container.provide<String>());        // Counter value is: 0
+debugPrint(container.provide<String>());        // Counter value is: 1
+debugPrint(scopedContainer.provide<String>());  // Counter value is: 0
+debugPrint(container.provide<String>());        // Counter value is: 2
 
 ```
 Each scoped container holds a reference to the root container in case a singleton or transient service will be requested. Also new scoped containers can be created based on other scopes. Each container will only hold reference to the root so all previous containers when get out of scope, are going to be subjects of garbage collecting even if their children are still live objects.

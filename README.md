@@ -76,6 +76,22 @@ When registered service implements it, service container will perform automatic 
 
 | * - Since root container can be a long lived object, leaving it to container would cause a lot of trash being piled up without any clearing by either container or garbage collector.
 
+### Quick dispose
+In case a disposable or a scope are supposed to last only to the end of a function or specific part of code, there is an extension available, to help with cleanup:
+```dart
+final ResultType res = Dispose.of(service)
+    .whileAlive(service => {
+        //...
+        return result;
+    });
+// or
+final ResultType res = await Dispose.of(service)
+    .whileAliveAsync(service async => {
+        //...
+        return await resultFuture;
+    });
+```
+
 ## Container sealing
 While it is not required, it is adviced to seal container when all services are registered. Container that is not sealed is still open to new registrations or replacements during runtime resulting in unpredicted behaviour.
 ```dart

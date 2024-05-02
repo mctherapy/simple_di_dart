@@ -1,4 +1,3 @@
-import 'package:simple_di/src/abstraction/disposable.dart';
 import 'package:simple_di/src/abstraction/service_descriptor.dart';
 import 'package:simple_di/src/service_lifetime.dart';
 

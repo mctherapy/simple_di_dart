@@ -41,7 +41,7 @@ final container = new ServiceContainerBuilder()
         final dependencyA = container.provide<DependencyA>();
         return DependencyB(dependencyA);
     })
-    .add((_) => DependencyA(), lifetime: ServiceLifetime.Transient)
+    .add((_) => DependencyA(), lifetime: ServiceLifetime.transient)
 ```
 Factory functions are not invoked until a service is requested, so dependencies can be resolved in them without much care about registration order.
 

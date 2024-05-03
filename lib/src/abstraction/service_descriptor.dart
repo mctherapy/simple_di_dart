@@ -6,6 +6,11 @@ abstract class ServiceDescriptor {
   bool get constructed;
   const ServiceDescriptor(this.lifetime);
 
+  /// Provides a value described by a descriptor.
+  ///
+  /// This is internal method used by default Service Container!
+  ///
+  /// If you wish to use it, check properly if requested descriptor holds type you ask for!
   TRequested? unsafeProvideWith<TRequested>(ServiceContainer sp);
 }
 

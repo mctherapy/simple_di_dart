@@ -5,12 +5,12 @@ import '../abstraction/service_container.dart';
 
 class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
   Factory<T>? _factory;
-  final bool singleton;
+  final bool isGlobal;
   T? _instance;
 
-  ScopedProvider(Factory<T> factory, this.singleton)
-      : super(singleton ? ServiceLifetime.singleton : ServiceLifetime.scoped) {
-    if (singleton) {
+  ScopedProvider(Factory<T> factory, this.isGlobal)
+      : super(isGlobal ? ServiceLifetime.singleton : ServiceLifetime.scoped) {
+    if (isGlobal) {
       _factory = (sp) {
         final result = factory(sp);
         _factory = null;
@@ -29,13 +29,15 @@ class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
 
   @override
   ServiceDescriptor? scopeify() =>
-      singleton ? null : ScopedProvider(_factory!, singleton);
+      isGlobal ? null : ScopedProvider(_factory!, isGlobal);
 
   @override
   bool get constructed => _instance != null;
 
   @override
   TRequested? unsafeProvideWith<TRequested>(ServiceContainer sp) {
-    return provideWith(sp) as TRequested?;
+    return T.hashCode == TRequested.hashCode
+        ? provideWith(sp) as TRequested?
+        : null;
   }
 }

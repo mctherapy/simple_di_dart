@@ -36,8 +36,6 @@ class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
 
   @override
   TRequested? unsafeProvideWith<TRequested>(ServiceContainer sp) {
-    return T.hashCode == TRequested.hashCode
-        ? provideWith(sp) as TRequested?
-        : null;
+    return T == TRequested ? provideWith(sp) as TRequested? : null;
   }
 }

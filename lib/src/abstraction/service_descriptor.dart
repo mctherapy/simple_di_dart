@@ -1,4 +1,4 @@
-import 'service_container.dart';
+import '../service_container.dart';
 import '../service_lifetime.dart';
 
 abstract class ServiceDescriptor {

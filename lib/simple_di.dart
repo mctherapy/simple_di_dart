@@ -4,7 +4,7 @@
 library;
 
 export 'src/service_container_builder.dart';
-export 'src/abstraction/service_container.dart';
+export 'src/service_container.dart';
 export 'src/service_lifetime.dart';
 export 'src/abstraction/disposable.dart';
 export 'src/errors/container_sealed.dart';

@@ -31,12 +31,12 @@ Legend:
 
 **❗ While it does work and serves it's purpose relatively well, it was not tested properly and might contain bugs or performance issues. (especially with isolates)❗**
 
-## Service registration 
+## Creating a container 
 Services can be added by chaining methods `ServiceContainerBuilder.add<T>(T Function(ServiceContainer) builder, lifetime: ServiceLifeTime.singleton)`. 
 
 Lifetime can be one of: `[singleton, scoped, transient]`.
 ```dart
-final container = new ServiceContainerBuilder()
+final builder = new ServiceContainerBuilder()
     .add((container) => {
         final dependencyA = container.provide<DependencyA>();
         return DependencyB(dependencyA);
@@ -44,6 +44,14 @@ final container = new ServiceContainerBuilder()
     .add((_) => DependencyA(), lifetime: ServiceLifetime.transient)
 ```
 Factory functions are not invoked until a service is requested, so dependencies can be resolved in them without much care about registration order.
+
+After finishing building call `build()` method to retrieve a container.
+
+```dart
+final ServiceContainer container = builder.build();
+```
+
+After building, the builder itself becomes `sealed` making it readonly. Any registration after sealing results in `ContainerSealed` exception.
 
 ## Service providing
 Services can be obtained by one of the following methods:
@@ -91,13 +99,6 @@ final ResultType res = await Dispose.of(service)
         return await resultFuture;
     });
 ```
-
-## Container sealing
-While it is not required, it is adviced to seal container when all services are registered. Container that is not sealed is still open to new registrations or replacements during runtime resulting in unpredicted behaviour.
-```dart
-final serviceProvider = container.seal() // Also casts to ServiceContainer;
-```
-**❗Performing registrations on sealed container results in thrown ContainerSealed exception.❗**
 ## Scoping
 Scope is an Unit of Work object that holds a copy of scoped service factories.
 
@@ -126,7 +127,7 @@ Each scoped container holds a reference to the root container in case a singleto
 
 **Scoped containers are sealed!**
 
-While it is possible to create a scoped container from unsealed builder, replaced registrations are not reflected in scoped container if specified type was already provided at least once.
+While it is possible to create a scoped container from manually created descriptor map, replaced registrations are not reflected in scoped container if specified type was already provided at least once.
 
 ## Good practices
 - Never work on root provider

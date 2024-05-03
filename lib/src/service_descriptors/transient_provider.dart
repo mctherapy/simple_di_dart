@@ -1,7 +1,7 @@
 import 'package:simple_di/src/abstraction/service_descriptor.dart';
 import 'package:simple_di/src/service_lifetime.dart';
 
-import '../abstraction/service_container.dart';
+import '../service_container.dart';
 
 class TransientProvider<T> extends ServiceProvider<T> {
   final Factory<T> _factory;

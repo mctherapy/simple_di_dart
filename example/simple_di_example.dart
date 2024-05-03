@@ -1,6 +1,6 @@
-import 'package:simple_di/simple_di.dart';
+// import 'package:simple_di/simple_di.dart';
 
-void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
-}
+// void main() {
+//   var awesome = Awesome();
+//   print('awesome: ${awesome.isAwesome}');
+// }

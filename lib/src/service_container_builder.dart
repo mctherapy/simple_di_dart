@@ -5,7 +5,6 @@ import 'package:simple_di/src/service_descriptors/scoped_provider.dart';
 import 'package:simple_di/src/abstraction/service_descriptor.dart';
 import 'package:simple_di/src/service_lifetime.dart';
 import 'package:simple_di/src/service_descriptors/transient_provider.dart';
-import 'package:simple_di/src/extensions/dispose_extension.dart';
 
 import 'abstraction/service_container.dart';
 

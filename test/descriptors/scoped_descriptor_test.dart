@@ -13,7 +13,7 @@ String dependantFactory(ServiceContainer sp) =>
     expectedString + sp.provide<int>().toString();
 
 void main() {
-  group("Scoped descriptor", () {
+  group("ScopedProvider", () {
     ServiceContainerMock containerMock = ServiceContainerMock();
 
     setUp(() {

@@ -69,6 +69,17 @@ void main() {
         }
       });
 
+      test(desc("unsafeProvide() invalid type returns null"), () {
+        final subject = ScopedProvider<String>(factory, isGlobal);
+        expect(subject.unsafeProvideWith<int>(containerMock), null);
+      });
+
+      test(desc("unsafeProvide() valid type returns constructed value"), () {
+        final subject = ScopedProvider<String>(factory, isGlobal);
+        expect(subject.unsafeProvideWith<String>(containerMock),
+            subject.provideWith(containerMock));
+      });
+
       test(desc("scopify() returns ${isGlobal ? "null" : "a copy"}"), () {
         final subject = ScopedProvider<String>(factory, isGlobal);
         final subjectValue = subject.provideWith(containerMock);

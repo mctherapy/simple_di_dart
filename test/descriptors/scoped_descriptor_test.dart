@@ -4,7 +4,7 @@ import 'package:simple_di/src/abstraction/service_descriptor.dart';
 import 'package:simple_di/src/service_descriptors/scoped_provider.dart';
 import 'package:test/test.dart';
 
-class ServiceContainerMock extends Mock implements ServiceContainer {}
+import '../mocks/service_container_mock.dart';
 
 const String expectedString = "this is probably the most unnecessary library";
 const int dependantSuffix = 4;
@@ -30,8 +30,7 @@ void main() {
       ) = testCase;
 
       // Generates test description based on test case
-      String desc(String description) =>
-          "Parameterised: ${testCase.toString()} $description";
+      String desc(String description) => "$description ${testCase.toString()}";
 
       test(desc("provideWith() properly constructs value"), () {
         final subject = ScopedProvider<String>(factory, isGlobal);
@@ -65,7 +64,7 @@ void main() {
 
           expect(calls, 1,
               reason:
-                  "Factory method must only be called once, but was called again at index $provideCount");
+                  "Factory method must only be called once, but was called again at call: $provideCount");
         }
       });
 

@@ -9,8 +9,10 @@ Implemented:
 - Scoping (special case of singleton services with lifetime of a container or it's scoped copy)
 - **Mostly** automatic cleaning after containers and their services
 
-Not implemented:
+In progress:
 - Unit tests [♟️]
+
+Not implemented:
 - Source generation [👾]
 - Circular reference prevention [😐]
 - Keyed services [😐]

@@ -7,10 +7,8 @@ Implemented:
 - Singleton service handling
 - Transient service handling
 - Scoping (special case of singleton services with lifetime of a container or it's scoped copy)
-- **Mostly** automatic cleaning after containers and their services
-
-In progress:
 - Unit tests [♟️]
+- **Mostly** automatic cleaning after containers and their services
 
 Not implemented:
 - Registering services with functional destructors [♟️]

@@ -1,6 +1,5 @@
 import 'package:simple_di/simple_di.dart';
 import 'package:simple_di/src/abstraction/service_descriptor.dart';
-import 'package:simple_di/src/service_descriptors/scoped_provider.dart';
 
 class ServiceContainer implements Disposable {
   late final Map<int, ServiceDescriptor> _services;
@@ -11,7 +10,7 @@ class ServiceContainer implements Disposable {
     _parent = null;
   }
   ServiceContainer._scope(ServiceContainer parent) {
-    _services = parent._services;
+    _services = {};
     _parent = parent._parent ?? parent;
   }
 
@@ -20,8 +19,7 @@ class ServiceContainer implements Disposable {
     late final T? service;
 
     if (descriptor != null) {
-      final typedDescriptor = descriptor as ServiceProvider<T>;
-      service = typedDescriptor.provideWith(this);
+      service = descriptor.unsafeProvideWith<T>(this);
 
       /// Roots transients are not subjects for disposal
       if (descriptor.lifetime != ServiceLifetime.transient || _parent != null) {
@@ -55,15 +53,13 @@ class ServiceContainer implements Disposable {
       ///
       /// In case it succeeds, new descriptor is saved for further use and
       /// service constructed.
-      case ScopedProvider<T> descriptor:
-        final typedDescriptor = descriptor.scopeify();
+      case ServiceDescriptor(lifetime: ServiceLifetime.scoped):
+        final copiedDescriptor = descriptor.tryCopy();
 
-        if (typedDescriptor == null) {
-          return descriptor.unsafeProvideWith<T>(this);
-        }
+        service = copiedDescriptor?.unsafeProvideWith<T>(this);
+        if (copiedDescriptor == null) return service;
 
-        _services[T.hashCode] = typedDescriptor;
-        service = typedDescriptor.unsafeProvideWith(this);
+        _services[T.hashCode] = copiedDescriptor;
         break;
 
       default:

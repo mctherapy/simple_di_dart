@@ -12,10 +12,7 @@ abstract class ServiceDescriptor {
   ///
   /// If you wish to use it, check properly if requested descriptor holds type you ask for!
   TRequested? unsafeProvideWith<TRequested>(ServiceContainer sp);
-}
-
-abstract class Scoped {
-  ServiceDescriptor? scopeify();
+  ServiceDescriptor? tryCopy() => null;
 }
 
 abstract class ServiceProvider<T> extends ServiceDescriptor {

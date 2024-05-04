@@ -3,7 +3,7 @@ import 'package:simple_di/src/service_lifetime.dart';
 
 import '../service_container.dart';
 
-class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
+class ScopedProvider<T> extends ServiceProvider<T> {
   Factory<T>? _factory;
   final bool isGlobal;
   T? _instance;
@@ -28,7 +28,7 @@ class ScopedProvider<T> extends ServiceProvider<T> implements Scoped {
   }
 
   @override
-  ServiceDescriptor? scopeify() =>
+  ServiceDescriptor? tryCopy() =>
       isGlobal ? null : ScopedProvider(_factory!, isGlobal);
 
   @override

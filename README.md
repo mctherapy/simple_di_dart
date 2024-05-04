@@ -135,6 +135,5 @@ While it is possible to create a scoped container from manually created descript
 
 ## Good practices
 - Never work on root provider
-- Never create a scope without sealing root container
 - Don't dispose provided services by yourself
 - Always dispose scopes after work on them is finished

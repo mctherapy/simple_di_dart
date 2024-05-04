@@ -3,7 +3,7 @@ import 'package:simple_di/simple_di.dart';
 import 'package:simple_di/src/service_descriptors/transient_provider.dart';
 import 'package:test/test.dart';
 
-import '../mocks/service_container_mock.dart';
+import '../common/service_container_mock.dart';
 
 const String expectedString = "this is probably the most unnecessary library";
 const int dependantSuffix = 4;

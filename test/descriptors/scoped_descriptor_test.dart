@@ -83,7 +83,7 @@ void main() {
         final subject = ScopedProvider<String>(factory, isGlobal);
         final subjectValue = subject.provideWith(containerMock);
 
-        final result = subject.scopeify();
+        final result = subject.tryCopy();
 
         if (isGlobal) {
           expect(result, null);

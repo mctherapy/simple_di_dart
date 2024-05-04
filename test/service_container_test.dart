@@ -59,11 +59,11 @@ void main() {
               "service ${lifetime == ServiceLifetime.singleton ? "was not disposed" : "was properly disposed"} after scoped container disposal"),
           () {
         final descriptor = MockServiceDescriptor();
-        final expectedValue = DisposableImplementation();
+        final expectedValue = DisposableMock();
         var diposeCalls = 0;
 
         when(descriptor.lifetime).thenReturn(lifetime);
-        when(descriptor.unsafeProvideWith<DisposableImplementation>(any))
+        when(descriptor.unsafeProvideWith<DisposableMock>(any))
             .thenReturn(expectedValue);
         when(descriptor.tryCopy()).thenReturn(descriptor);
 
@@ -74,7 +74,7 @@ void main() {
         services[expectedValue.runtimeType.hashCode] = descriptor;
 
         final scopeSubject = subject.createScope();
-        final value = scopeSubject.provide<DisposableImplementation>();
+        final value = scopeSubject.provide<DisposableMock>();
         expect(value, expectedValue);
 
         scopeSubject.dispose();
@@ -127,11 +127,11 @@ void main() {
               "services are ${lifetime == ServiceLifetime.transient ? "not " : ""}disposed alongside root container"),
           () {
         final descriptor = MockServiceDescriptor();
-        final expectedValue = DisposableImplementation();
+        final expectedValue = DisposableMock();
         var diposeCalls = 0;
 
         when(descriptor.lifetime).thenReturn(lifetime);
-        when(descriptor.unsafeProvideWith<DisposableImplementation>(any))
+        when(descriptor.unsafeProvideWith<DisposableMock>(any))
             .thenReturn(expectedValue);
 
         when(expectedValue.dispose()).thenAnswer((realInvocation) {
@@ -140,7 +140,7 @@ void main() {
 
         services[expectedValue.runtimeType.hashCode] = descriptor;
 
-        final providedValue = subject.provide<DisposableImplementation>();
+        final providedValue = subject.provide<DisposableMock>();
 
         expect(providedValue, expectedValue);
 

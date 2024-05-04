@@ -13,6 +13,7 @@ In progress:
 - Unit tests [♟️]
 
 Not implemented:
+- Registering services with functional destructors [♟️]
 - Source generation [👾]
 - Circular reference prevention [😐]
 - Keyed services [😐]
@@ -83,6 +84,7 @@ When registered service implements it, service container will perform automatic 
 - Root provider will not cleanup any transient services by itself. It's up to programmer to clean them up.*
 - Scoped containers only cleans their scoped services and transients created within their scope and will ignore their child scopes.
 - Cleanup is not ordered and each `Disposable` should only clean their state without dependant services.
+- Implementation via extensions is not supported
 
 | * - Since root container can be a long lived object, leaving it to container would cause a lot of trash being piled up without any clearing by either container or garbage collector.
 

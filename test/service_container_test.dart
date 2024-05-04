@@ -4,6 +4,7 @@ import 'package:simple_di/simple_di.dart';
 import 'package:test/test.dart';
 
 import 'package:simple_di/src/abstraction/service_descriptor.dart';
+import 'common/disposable_mock.dart';
 @GenerateNiceMocks([MockSpec<ServiceDescriptor>()])
 import 'service_container_test.mocks.dart';
 
@@ -182,5 +183,3 @@ void main() {
     });
   });
 }
-
-class DisposableImplementation extends Mock implements Disposable {}

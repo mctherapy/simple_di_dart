@@ -14,7 +14,7 @@ class ServiceContainerBuilder {
 
   /// Adds a service registration to the current container
   ///
-  /// Throws if container was sealed beforehand
+  /// Throws [ContainerSealed] if container was sealed beforehand
   ServiceContainerBuilder add<T>(T Function(ServiceContainer) builder,
       {ServiceLifetime lifetime = ServiceLifetime.singleton}) {
     if (_sealed) throw ContainerSealed();

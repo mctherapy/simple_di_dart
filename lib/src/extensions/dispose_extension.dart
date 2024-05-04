@@ -8,17 +8,21 @@ extension type Dispose<T extends Disposable>._(T instance) {
   /// Perform a function specified as an argument, but also
   /// disposes [TSelf] instance before returning result.
   TResult whileAlive<TResult>(TResult Function(T) func) {
-    final result = func(this as T);
-    instance.dispose();
-    return result;
+    try {
+      return func(this as T);
+    } finally {
+      instance.dispose();
+    }
   }
 
   /// Perform a function specified as an argument, but also
   /// disposes [TSelf] instance before returning result.
   Future<TResult> whileAliveAsync<TResult>(
       Future<TResult> Function(T) func) async {
-    final result = await func(this as T);
-    instance.dispose();
-    return result;
+    try {
+      return await func(this as T);
+    } finally {
+      instance.dispose();
+    }
   }
 }

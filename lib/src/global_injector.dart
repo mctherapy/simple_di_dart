@@ -34,18 +34,17 @@ mixin Injected {
 }
 
 mixin Scoped implements Disposable {
-  late final ServiceContainer? _currentScope;
+  final ServiceContainer _currentScope = getCurrentScope().createScope();
 
   @override
   void dispose() {
-    _currentScope?.dispose();
+    _currentScope.dispose();
   }
 
   T provideInScope<T>(T Function(ServiceContainer) injector) {
     final previousScope = getCurrentScope();
-    _currentScope ??= previousScope.createScope();
 
-    registerGlobalContainer(_currentScope!);
+    registerGlobalContainer(_currentScope);
     final result = injector.call(_currentScope);
     registerGlobalContainer(previousScope);
 

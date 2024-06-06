@@ -4,7 +4,7 @@ import 'package:simple_di/src/errors/global_container_not_registered.dart';
 ServiceContainer? _scope;
 
 /// Registers passed container for use by [ScopeInjected] and [Injected] mixins
-void registerGlobalContainer(ServiceContainer container) {
+void registerGlobalContainer(ServiceContainer? container) {
   _scope = container;
 }
 

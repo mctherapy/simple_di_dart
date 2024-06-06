@@ -154,7 +154,7 @@ Those functions use currently used global scope, coming from either `registerGlo
 **❗While in functions it might be desired to use currently used scope, behaviour of global injectors in class instance methods might result in unpredictable behaviour!**
 
 ## Global class injection
-Preferable way to inject services into classes is by using `Injected` mixin. It does injection methods with the same signature as functional equivalend, but with consistent scope sampled from the time of class creation.
+Preferable way to inject services into classes is by using `Injected` mixin. It overwrites global injection methods with the same signature as functional equivalents, but with consistent scope sampled from the time of class creation.
 
 ```dart
 class Example with Injected {

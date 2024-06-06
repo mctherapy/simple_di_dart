@@ -15,13 +15,15 @@ class ServiceContainer implements Disposable {
   }
 
   T? provide<T>() {
+    if (T.hashCode == runtimeType.hashCode) return this as T;
+
     var descriptor = _services[T.hashCode];
     late final T? service;
 
     if (descriptor != null) {
       service = descriptor.unsafeProvideWith<T>(this);
 
-      /// Roots transients are not subjects for disposal
+      /// Roots transients are not a subject for disposal
       if (descriptor.lifetime != ServiceLifetime.transient || _parent != null) {
         _tryTrackForDisposal(service);
       }

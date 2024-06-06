@@ -154,18 +154,20 @@ Those functions use currently used global scope, coming from either `registerGlo
 **❗While in functions it might be desired to use currently used scope, behaviour of global injectors in class instance methods might result in unpredictable behaviour!**
 
 ## Global class injection
-Preferable way to inject services into classes is by using `Injected` mixin. It overwrites global injection methods with the same signature as functional equivalents, but with consistent scope sampled from the time of class creation.
+Preferable way to inject services into classes is by using `Injected` mixin. It provides methods with the same signature as functional equivalents, but with consistent scope sampled from the time of class creation.
+
+**To use those methods, prefixing them with `this` is necessary!**
 
 ```dart
 class Example with Injected {
-    late final DepA _dependency = injectRequired<DepA>();
+    late final DepA _dependency = this.injectRequired<DepA>();
 
     printFromField(){
         debugPrint(_dependency.message);
     }
 
     printFromInjection(){
-        debugPrint(injectRequired<DepA>().message)
+        debugPrint(this.injectRequired<DepA>().message)
     }
 }
 
@@ -208,7 +210,7 @@ Dispose.of(getCurrentScope().createScope())
 
 // Using mixin flow
 class A with Scoped {
-    late final DepA _dependencyA = provideInScope((scope) => scope.provideRequired<DepA>());
+    final DepA _dependencyA = provideInScope((scope) => scope.provideRequired<DepA>());
 }
 ```
 

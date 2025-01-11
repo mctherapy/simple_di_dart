@@ -29,7 +29,7 @@ Legend:
 
 **❗This project mostly serves as a way for me to learn and play around with Dart language and Flutter framework.❗**
 
-**❗ While it does work and serves it's purpose relatively well, it was not testing was surface level at best and might contain bugs or performance issues. (especially with isolates)❗**
+**❗ While it does work and serves it's purpose relatively well, it was tested on a surface level at best and might contain bugs or performance issues. (especially with isolates)❗**
 
 ## Creating a container 
 Services can be added by chaining methods `ServiceContainerBuilder.add<T>(T Function(ServiceContainer) builder, lifetime: ServiceLifeTime.singleton)`. 
